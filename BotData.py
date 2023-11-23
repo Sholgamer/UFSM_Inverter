@@ -10,16 +10,12 @@ def scraapy(content):
     page = BeautifulSoup(content, "html.parser")
     db_all = page.find_all("div" , class_="photo-disk-inner-font")
 
-    # volt = page.find.recompile("div" , class_="photo-disk-inner-left>\d{3}\.\d{1}/")
-    # amp = page.find.recompile("div" , class_="photo-disk-inner-left>\s\d{2}\.\d{1}/")
-
+    
     print(len(db_all))
     volt = re.search('\d{3}\.\d{1}'  , str(db_all[3])).group()
     amp = re.search('\d{2}\.\d{1}'  , str(db_all[4])).group()
 
-    # volt = re.search('class="photo-disk-inner-left">\d{3}\.\d{1}' , str(content))
-    # amp = re.search('class="photo-disk-inner-left">\s\d{2}\.\d{1}' , content)
-    # print(content)
+    
     print(volt , amp)
 
 #bot abre o site e navegar ate ter as informaçoes do inversor
@@ -54,7 +50,7 @@ with sync_playwright() as p:
 
         time.sleep(20)
 
-        page.goto("https://device.ingeconsunmonitor.com/?board=1DM172B04A31&ptk=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQbGFudElkIjoiMTk3OSIsIlVzZXJJZCI6IjEyMzAiLCJuYmYiOjE2OTk5ODc2OTYsImV4cCI6MTY5OTk5MTI5NiwiaWF0IjoxNjk5OTg3Njk2LCJpc3MiOiJpbmdlY29uc3VubW9uaXRvci5jb20ifQ.erIqOQHGDZ9m_94sV01jZ1QpKlcqp08SULlGffYFv-0#/embeddedinverter/main/local/1/-1")
+        page.goto("https://device.ingeconsunmonitor.com/?board=1DM172B04A31&ptk=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQbGFudElkIjoiMTk3OSIsIlVzZXJJZCI6IjEyMzAiLCJuYmYiOjE3MDA2NTg5MzMsImV4cCI6MTcwMDY2MjUzMywiaWF0IjoxNzAwNjU4OTMzLCJpc3MiOiJpbmdlY29uc3VubW9uaXRvci5jb20ifQ.LQN2BisWifSSpZXL0w_pNvGS8SvLXwaMwHpLoZXdGlU#/embeddedinverter/main/local/1/-1")
         time.sleep(20)
 
         scraapy(page.content())
